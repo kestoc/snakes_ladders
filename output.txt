@@ -1,0 +1,27 @@
+Dado arroja 3
+Jugador avanza a cuadro 3
+Jugador sube por la escalera al cuadro 11
+Dado arroja 5
+Jugador avanza a cuadro 8
+Dado arroja 3
+Jugador avanza a cuadro 11
+Dado arroja 2
+Jugador avanza a cuadro 13
+Dado arroja 1
+Jugador avanza a cuadro 14
+Jugador desciende al cuadro 4
+Dado arroja 1
+Jugador avanza a cuadro 15
+Dado arroja 2
+Jugador avanza a cuadro 17
+Dado arroja 4
+Jugador avanza a cuadro 21
+Dado arroja 1
+Jugador avanza a cuadro 22
+Jugador desciende al cuadro 20
+Dado arroja 2
+Jugador avanza a cuadro 24
+Jugador desciende al cuadro 16
+Dado arroja 3
+Jugador llego o supero el cuadro 25
+Fin
