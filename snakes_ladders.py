@@ -22,22 +22,26 @@ def throwDice():
     """
     return random.randint(1,6)
 
-def genMessage(n, val):
-    assert(type(val) == int)
-    assert(type(n) == int)
+def genMessage(num):
+    assert(type(num) == int)
+    assert(num >= 1 and num <= 5)
     """
     """
     ans = None
 
-    if val == n*n:
-        ans = "Jugador llega al cuadro"
-    elif val > n*n:
-        ans = "Jugador supera el cuadro"
-    
-    if val in snake:
-        ans = "Jugador desciende al cuadro"
-    elif val in ladders:
-        ans = "Jugador sube por la escalera al cuadro"
+    match num:
+        case 1:
+            ans = "Jugador llega al cuadro"
+        case 2:
+            ans = "Jugador supera el cuadro"
+        case 3:
+            ans = "Jugador avanza a cuadro"
+        case 4:
+            ans = "Jugador desciende al cuadro"
+        case 5:
+            ans = "Jugador sube por la escalera al cuadro"
+        case _:
+            ans = "Codigo invalido."
 
     return ans
 
@@ -45,11 +49,10 @@ def game(n):
     assert(type(n) == int)
     assert(type(snake) == dict)
     assert(type(ladders) == dict)
-    assert(len(snake) <= (n*n-n)-1) #Asumiendo de que se llenan todas las casillas con serpientes desde la segunda fila hasta la ultima a excepcion de la casilla meta 
-    assert(len(ladders) <= n*n-n) #Asumiendo de que se llenan todas las casillas con escaleras desde la primera fila hasta la penultima fila
+    #assert(len(snake) <= (n*n-n)-1) #Asumiendo de que se llenan todas las casillas con serpientes desde la segunda fila hasta la ultima a excepcion de la casilla meta 
+    #assert(len(ladders) <= n*n-n) #Asumiendo de que se llenan todas las casillas con escaleras desde la primera fila hasta la penultima fila
     """
-        Variables: n que ser el tamaño del tablero de juego, en este caso sera siempre 5 para tener un tablero de 5x5 o lo que es igual
-        un tablero de 25 casillas en total.
+        Variables: n que ser el tamaño del tablero de juego, quedando un total de n*n casillas.
 
         Descripcion: Función principal de ejecución del juego 'Escaleras y serpientes'.
     """
@@ -59,32 +62,30 @@ def game(n):
         print("Dado arroja",aux)
         value += aux
 
-        msg = genMessage(n, value)
-
         if value == n*n:
-            print(msg,n*n)
-            print("Fin")
+            print(genMessage(1),n*n)
             return
         elif value > n*n:
-            print(msg,n*n)
-            print("Fin")
+            print(genMessage(2),n*n)
             return
 
-        print(msg, value)
+        print(genMessage(3), value)
 
         if value in snake:
             value = snake[value]
-            print(msg, value)
+            print(genMessage(4), value)
 
         elif value in ladders:
             value = ladders[value]
-            print(msg, value)
+            print(genMessage(5), value)
 
 def main():
     """
         Variables: Ninguna.
 
-        Descripción: Función principal para solicitar los datos para el juego.
+        Descripción: Función principal para solicitar los datos para el juego. Se solicita n que es el tamaño del tablero
+        s que seran las ubicaciones de las serpientes y a donde se desciende y l que seran las ubicaciones de las escaleras y
+        a donde se asciende.
     """
 
     n = int(input("Ingrese el tamaño del tablero: "))
@@ -108,5 +109,6 @@ def main():
         ladders[l[i-1]] = l[i]
    
     game(n)
+    print("Fin")
 
 main()
