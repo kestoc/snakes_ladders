@@ -12,6 +12,8 @@
 import random
 from sys import stdin
 
+snake , ladders = {}, {}
+
 def throwDice():
     """
         Variables: Ninguna.
@@ -20,43 +22,63 @@ def throwDice():
     """
     return random.randint(1,6)
 
-
-def game(n,s,l):
+def genMessage(n, val):
+    assert(type(val) == int)
     assert(type(n) == int)
-    assert(type(s) == dict)
-    assert(type(l) == dict)
-    assert(len(s) <= (n*n-n)-1) #Asumiendo de que se llenan todas las casillas con serpientes desde la segunda fila hasta la ultima a excepcion de la casilla meta 
-    assert(len(l) <= n*n-n) #Asumiendo de que se llenan todas las casillas con escaleras desde la primera fila hasta la penultima fila
+    """
+    """
+    ans = None
+
+    if val == n*n:
+        ans = "Jugador llega al cuadro"
+    elif val > n*n:
+        ans = "Jugador supera el cuadro"
+    
+    if val in snake:
+        ans = "Jugador desciende al cuadro"
+    elif val in ladders:
+        ans = "Jugador sube por la escalera al cuadro"
+
+    return ans
+
+def game(n):
+    assert(type(n) == int)
+    assert(type(snake) == dict)
+    assert(type(ladders) == dict)
+    assert(len(snake) <= (n*n-n)-1) #Asumiendo de que se llenan todas las casillas con serpientes desde la segunda fila hasta la ultima a excepcion de la casilla meta 
+    assert(len(ladders) <= n*n-n) #Asumiendo de que se llenan todas las casillas con escaleras desde la primera fila hasta la penultima fila
     """
         Variables: n que ser el tamaño del tablero de juego, en este caso sera siempre 5 para tener un tablero de 5x5 o lo que es igual
         un tablero de 25 casillas en total.
 
         Descripcion: Función principal de ejecución del juego 'Escaleras y serpientes'.
     """
-    value = 0 ; snake = s ; ladders = l
+    value = 0
     while value < n*n:
         aux = throwDice()
         print("Dado arroja",aux)
         value += aux
 
+        msg = genMessage(n, value)
+
         if value == n*n:
-            print("Jugador llega al cuadro",n*n)
+            print(msg,n*n)
             print("Fin")
             return
         elif value > n*n:
-            print("Jugador supera el cuadro",n*n)
+            print(msg,n*n)
             print("Fin")
             return
 
-        print("Jugador avanza al cuadro", value)
+        print(msg, value)
 
         if value in snake:
             value = snake[value]
-            print("Jugador desciende al cuadro", value)
+            print(msg, value)
 
         elif value in ladders:
             value = ladders[value]
-            print("Jugador sube por escalera al cuadro", value)
+            print(msg, value)
 
 def main():
     """
@@ -64,28 +86,27 @@ def main():
 
         Descripción: Función principal para solicitar los datos para el juego.
     """
-    newS, newL = {}, {}
 
     n = int(input("Ingrese el tamaño del tablero: "))
 
     print("\nIngrese la casilla donde estara la serpiente y seguido, la casilla a la que desciende al caer en ella (separado por espacios): ")
-    snake = list(map(int,stdin.readline().split()))
+    s = list(map(int,stdin.readline().split()))
     
-    for i in range(1,len(snake),2):
-        if snake[i-1] >= n*n or snake[i] >= n*n:
+    for i in range(1,len(s),2):
+        if s[i-1] >= n*n or s[i] >= n*n:
             print("Valores invalidos.")
             return
-        newS[snake[i-1]] = snake[i]
+        snake[s[i-1]] = s[i]
 
     print("\nIngrese la casilla donde estara la escalera y seguido, la casilla a la que asciende al caer en ella (separado por espacios): ")
-    ladders = list(map(int,stdin.readline().split()))
+    l = list(map(int,stdin.readline().split()))
     
-    for i in range(1,len(ladders),2):
-        if snake[i-1] >= n*n or snake[i] >= n*n:
+    for i in range(1,len(l),2):
+        if l[i-1] >= n*n or l[i] >= n*n:
             print("Valores invalidos.")
             return
-        newL[ladders[i-1]] = ladders[i]
+        ladders[l[i-1]] = l[i]
    
-    game(n,newS,newL)
+    game(n)
 
 main()
