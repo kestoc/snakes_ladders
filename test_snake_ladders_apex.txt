@@ -22,7 +22,7 @@ class test_snake_ladders {
         }
     }
     
-    //Probando que se produzca un error cuando se intenta enviar un valor negativo
+    //Probando que se produzca un error cuando se intenta enviar un valor negativo al juego
     @isTest static void failGame1(){
         Integer n = -1;
         try{
@@ -40,10 +40,11 @@ class test_snake_ladders {
             Map<Integer,String> res = snake_ladders.state(n,val);
             for(Integer key : res.keySet()){
                 System.assertEquals(res.get(key),'Jugador avanza a cuadro','OK');
+                System.assertEquals(key, val, 'OK');
             }
         }catch(System.AssertException e){
             System.debug(e.getMessage());
         }
-    }
+    }   
     
 }
