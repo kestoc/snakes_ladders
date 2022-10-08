@@ -3,9 +3,9 @@
  *
  * Fecha: 10/7/2022
  * 
- * Descripción: Archivo con la clase, métodos y variables para implementar en el lenguaje Apex Salesforce. En este caso, no quise 
- * meterme con el tema de entradas de datos por archivos o consola, así que la lógica seguirá siendo general para cualquier tamaño 
- * de tablero y posiciones de serpientes y escaleras, pero, solo se probara en el main con el caso del documento.
+ * Descripción: Archivo con la clase, métodos y variables para implementar en el lenguaje Apex Salesforce con Playground. En este caso, 
+ * no quise meterme con el tema de entradas de datos por archivos o consola, así que la lógica seguirá siendo general para cualquier 
+ * tamaño de tablero y posiciones de serpientes y escaleras, pero, solo se probara en el main con el caso del documento.
 */
 
 public class snake_ladders {

@@ -1,0 +1,10 @@
+/*
+ * Autores: Kevin Ocampo 
+ * 
+ * Fecha: 10/7/2022
+ * 
+ * Descripción: Este archivo contiene las pruebas realizadas al juego 'Serpientes y Escaleras' con la pruebas unitarias de
+ * Apex Salesforce con Playground.
+ * 
+ * Version: 1.0
+*/
