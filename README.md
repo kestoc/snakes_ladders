@@ -37,3 +37,6 @@ python -m unittest -v test
 ó
 python3 -m unittest -v test
 ```
+
+## **Codigo lenguaje Apex**
+En los archivos *snakes_ladders_apex.txt* y *test_snake_ladders_apex.txt* se encuentra el código con toda la lógica del juego y los test realizados para tener una cobertura del 100% del código, desarrollado en el lenguaje Apex Salesforce que se trabajó en un Playground.
