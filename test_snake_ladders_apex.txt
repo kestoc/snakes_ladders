@@ -15,6 +15,7 @@ class test_snake_ladders {
 	@isTest static void endGame(){
         Integer n = 5;
         try{
+            snake_ladders.setMaps();
             String res = snake_ladders.game(n);
             System.assertEquals(res,'Fin','OK');
         } catch(System.AssertException e){
@@ -26,9 +27,10 @@ class test_snake_ladders {
     @isTest static void failGame1(){
         Integer n = -1;
         try{
+            snake_ladders.setMaps();
             String res = snake_ladders.game(n);   
         } catch(System.AssertException e){
-            System.debug('OK');
+            System.assertEquals(e,e);
         }
     }
     
@@ -37,6 +39,7 @@ class test_snake_ladders {
         Integer n = 5;
         Integer val = 5;
         try{
+            snake_ladders.setMaps();
             Map<Integer,String> res = snake_ladders.state(n,val);
             for(Integer key : res.keySet()){
                 System.assertEquals(res.get(key),'Jugador avanza a cuadro','OK');
@@ -46,5 +49,61 @@ class test_snake_ladders {
             System.debug(e.getMessage());
         }
     }   
+    
+    //Probando que el mensaje y valor devuelto para una casilla con serpiente es el correcto
+    @isTest static void squareCorrect2(){
+        Integer n = 5;
+        Integer val = 14;
+        Integer down = 4;
+        try{
+            snake_ladders.setMaps();
+            Map<Integer,String> res = snake_ladders.state(n,val);
+            for(Integer key : res.keySet()){
+                System.assertEquals(res.get(key),'Jugador desciende al cuadro','OK');
+                System.assertEquals(key, down, 'OK');
+            }
+        }catch(System.AssertException e){
+            System.debug(e.getMessage());
+        }
+    }
+    
+    //Probando que el mensaje y valor devuelto para una casilla con escalera es el correcto
+    @isTest static void squareCorrect3(){
+        Integer n = 5;
+        Integer val = 3;
+        Integer up = 11;
+        try{
+            snake_ladders.setMaps();
+            Map<Integer,String> res = snake_ladders.state(n,val);
+            for(Integer key : res.keySet()){
+                System.assertEquals(res.get(key),'Jugador sube por la escalera al cuadro','OK');
+                System.assertEquals(key, up, 'OK');
+            }
+        }catch(System.AssertException e){
+            System.debug(e.getMessage());
+        }
+    }
+    
+    //Probando con un valor no valido de casilla
+    @isTest static void failGame2(){
+        Integer n = 5;
+        Integer val = -3;
+        try{
+            snake_ladders.setMaps();
+            Map<Integer,String> res = snake_ladders.state(n,val);
+        }catch(System.AssertException e){
+            System.assertEquals(e,e);
+        }
+    }
+    
+    //Probando el main
+    @isTest static void testMain(){
+        try{
+            Integer res = snake_ladders.main();
+            System.assertEquals(res, 0, 'OK');
+        }catch(System.AssertException e){
+            System.debug(e.getMessage());
+        }
+    }
     
 }

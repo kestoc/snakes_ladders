@@ -39,8 +39,6 @@ def genMessage(num):
             ans = "Jugador desciende al cuadro"
         case 4: #Caso cuando se cae en una casilla con escalera
             ans = "Jugador sube por la escalera al cuadro"
-        case _:
-            ans = "Codigo invalido."
 
     return ans
 

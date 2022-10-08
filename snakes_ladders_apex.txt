@@ -11,7 +11,6 @@
 public class snake_ladders {
     public static Map<Integer, Integer> snake = new Map<Integer, Integer>(); //Mapa para las casillas que continen serpientes
     public static Map<Integer, Integer> ladders = new Map<Integer, Integer>(); //Mapa para las casillas que contienen escaleras
-    public static Integer value = 0; //Variable que almacena la casilla en la que va
     
     public static Integer throwDice(){
         /*
@@ -24,6 +23,7 @@ public class snake_ladders {
     }
     
     public static String genMessage(Integer num){
+        System.assert(num >= 1 && num <= 4);
         /*
          * Variables: num que sera el codigo del mensaje a devolver.
          * 
@@ -42,9 +42,6 @@ public class snake_ladders {
             }
             when 4{
                 ans = 'Jugador sube por la escalera al cuadro';
-            }
-            when else{
-                ans = 'Codigo invalido.';
             }
         }
         return ans;
@@ -65,23 +62,19 @@ public class snake_ladders {
             ans.put(n*n,genMessage(1));
         
         else if (snake.containsKey(val)){
-            System.debug('Entre snake');
         	System.debug(genMessage(2)+' '+val);
             val = snake.get(val);
             ans.put(val,genMessage(3));
         }
         
         else if (ladders.containsKey(val)){
-            System.debug('Entre ladders');
         	System.debug(genMessage(2)+' '+val);
             val = ladders.get(val);
-            ans.put(val,genMessage(3));
+            ans.put(val,genMessage(4));
         }
         
         else
             ans.put(val,genMessage(2));
-        
-        value = val;
         
         return ans;
     }
@@ -109,8 +102,7 @@ public class snake_ladders {
         return 'Fin';
     }
     
-    public static void main(){
-        //Datos quemados para poder ejecutar el juego
+    public static void setMaps(){
         snake.put(14,4);
         snake.put(19,8);
         snake.put(22,20);
@@ -119,6 +111,12 @@ public class snake_ladders {
         ladders.put(10,12);
         ladders.put(9,18);
         ladders.put(6,17);
+    }
+    
+    public static Integer main(){
+        //Datos quemados para poder ejecutar el juego
+        setMaps();
         System.debug(game(5));
+        return 0;
     }
 }
