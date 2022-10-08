@@ -50,34 +50,36 @@ public class snake_ladders {
         return ans;
     }
     
-    public static Map<String,Integer> state(Integer n, Integer val){
+    public static Map<Integer,String> state(Integer n, Integer val){
+        System.assert(n >= 1);
+        System.assert(val >= 1);
         /*
          * Variables: n que es el tamaño del tablero
          * 			  val que indica el valor de la casilla a la que me desplazare
          * 
          * Descripcion: Función que permite verificar el estado del juego y saber asi que acción se debe mostrar ne pantalla
 		*/
-        Map<String,Integer> ans = new Map<String,Integer>();
+        Map<Integer,String> ans = new Map<Integer,String>();
         
         if (val >= n*n)
-            ans.put(genMessage(1), n*n);
+            ans.put(n*n,genMessage(1));
         
         else if (snake.containsKey(val)){
             System.debug('Entre snake');
         	System.debug(genMessage(2)+' '+val);
             val = snake.get(val);
-            ans.put(genMessage(3),val);
+            ans.put(val,genMessage(3));
         }
         
         else if (ladders.containsKey(val)){
             System.debug('Entre ladders');
         	System.debug(genMessage(2)+' '+val);
             val = ladders.get(val);
-            ans.put(genMessage(3),val);
+            ans.put(val,genMessage(3));
         }
         
         else
-            ans.put(genMessage(2),val);
+            ans.put(val,genMessage(2));
         
         value = val;
         
@@ -85,6 +87,7 @@ public class snake_ladders {
     }
     
     public static String game(Integer n){
+        System.assert(n >= 1);
         /*
          * Variables: n que ser el tamaño del tablero de juego, quedando un total de n*n casillas.
          * 
@@ -96,9 +99,9 @@ public class snake_ladders {
             Integer aux = throwDice();
             System.debug('Dado arroja '+aux);
             local += aux;
-            Map<String,Integer> aux2 = state(n,local);
-            for(String key : aux2.keySet()){
-                System.debug(key+aux2.get(key));
+            Map<Integer,String> aux2 = state(n,local);
+            for(Integer key : aux2.keySet()){
+                System.debug(aux2.get(key)+key);
             }
         }
         

@@ -8,3 +8,42 @@
  * 
  * Version: 1.0
 */
+
+@isTest
+class test_snake_ladders {
+    //Probando que el juego finalice con un tablero de tamaño 5
+	@isTest static void endGame(){
+        Integer n = 5;
+        try{
+            String res = snake_ladders.game(n);
+            System.assertEquals(res,'Fin','OK');
+        } catch(System.AssertException e){
+            System.debug(e.getMessage());
+        }
+    }
+    
+    //Probando que se produzca un error cuando se intenta enviar un valor negativo
+    @isTest static void failGame1(){
+        Integer n = -1;
+        try{
+            String res = snake_ladders.game(n);   
+        } catch(System.AssertException e){
+            System.debug('OK');
+        }
+    }
+    
+    //Probando que el mensaje y valor devuelto para una casilla cualquiera (no hay serpiente ni escalera) es el correcto
+    @isTest static void squareCorrect1(){
+        Integer n = 5;
+        Integer val = 5;
+        try{
+            Map<Integer,String> res = snake_ladders.state(n,val);
+            for(Integer key : res.keySet()){
+                System.assertEquals(res.get(key),'Jugador avanza a cuadro','OK');
+            }
+        }catch(System.AssertException e){
+            System.debug(e.getMessage());
+        }
+    }
+    
+}
