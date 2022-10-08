@@ -8,7 +8,7 @@
  * de tablero y posiciones de serpientes y escaleras, pero, solo se probara en el main con el caso del documento.
 */
 
-public class escaleras_serpientes {
+public class snake_ladders {
     public static Map<Integer, Integer> snake = new Map<Integer, Integer>(); //Mapa para las casillas que continen serpientes
     public static Map<Integer, Integer> ladders = new Map<Integer, Integer>(); //Mapa para las casillas que contienen escaleras
     public static Integer value = 0; //Variable que almacena la casilla en la que va
